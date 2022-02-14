@@ -4,10 +4,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 
+import static com.codeborne.selenide.CollectionCondition.texts;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selenide.*;
 
 public class PracticeTestsForm {
 
@@ -26,8 +26,10 @@ public class PracticeTestsForm {
         $("#firstName").setValue("Alex");
         $("#lastName").setValue("Alexeev");
         $("#userEmail").setValue("emain@email.com");
-//        $("[for='gender-radio-1']").click();
+
+        $("#gender-radio-1");
         $(byText("Male")).click();
+
         $("#userNumber").setValue("8002000500");
 
         $("#dateOfBirthInput").click();
@@ -36,7 +38,7 @@ public class PracticeTestsForm {
         $("[class='react-datepicker__day react-datepicker__day--025']").click();
 
         $("#subjectsInput").setValue("Chemistry").pressEnter();
-//        $("[for='hobbies-checkbox-1']").click();
+        $("#hobbies-checkbox-1");
         $(byText("Sports")).click();
         $("#uploadPicture").uploadFromClasspath("photo.jpg");
         $("#currentAddress").setValue("Current Address");
@@ -51,17 +53,16 @@ public class PracticeTestsForm {
 
         $("[class='modal-header']").shouldBe(text("Thanks for submitting the form"));
 
-        $("[class='table-responsive'").shouldHave(
-                text("Student Name"), text("Alex Alexeev"),
-                text("Student Email"), text("emain@email.com"),
-                text("Gender"), text("Male"),
-                text("Mobile"), text("8002000500"),
-                text("Date of Birth"), text("25 June,1992"),
-                text("Subjects"), text("Chemistry"),
-                text("Hobbies"), text("Sports"),
-                text("Picture"), text("photo.jpg"),
-                text("Address"), text("Current Address"),
-                text("State and City"), text("NCR Delhi"));
+        $$(".table-responsive tr").filterBy(text("Student Name")).shouldBe(texts("Alex Alexeev"));
+        $$(".table-responsive tr").filterBy(text("Student Email")).shouldBe(texts("emain@email.com"));
+        $$(".table-responsive tr").filterBy(text("Gender")).shouldBe(texts("Male"));
+        $$(".table-responsive tr").filterBy(text("Mobile")).shouldBe(texts("8002000500"));
+        $$(".table-responsive tr").filterBy(text("Date of Birth")).shouldBe(texts("25 June,1992"));
+        $$(".table-responsive tr").filterBy(text("Subjects")).shouldBe(texts("Chemistry"));
+        $$(".table-responsive tr").filterBy(text("Hobbies")).shouldBe(texts("Sports"));
+        $$(".table-responsive tr").filterBy(text("Picture")).shouldBe(texts("photo.jpg"));
+        $$(".table-responsive tr").filterBy(text("Address")).shouldBe(texts("Current Address"));
+        $$(".table-responsive tr").filterBy(text("State and City")).shouldBe(texts("NCR Delhi"));
 
     }
 
