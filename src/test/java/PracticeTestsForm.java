@@ -27,8 +27,7 @@ public class PracticeTestsForm {
         $("#lastName").setValue("Alexeev");
         $("#userEmail").setValue("emain@email.com");
 
-        $("#gender-radio-1");
-        $(byText("Male")).click();
+        $("#genterWrapper").$(byText("Male")).click();
 
         $("#userNumber").setValue("8002000500");
 
@@ -38,8 +37,7 @@ public class PracticeTestsForm {
         $("[class='react-datepicker__day react-datepicker__day--025']").click();
 
         $("#subjectsInput").setValue("Chemistry").pressEnter();
-        $("#hobbies-checkbox-1");
-        $(byText("Sports")).click();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#uploadPicture").uploadFromClasspath("photo.jpg");
         $("#currentAddress").setValue("Current Address");
 
